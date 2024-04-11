@@ -1,0 +1,8 @@
+services:
+  text-generation-webui:
+    image: habitllm/text-generation-webui
+    volumes:
+      - ./.cache:/home/app/text-generation-webui/.cache
+      - ${PERSISTENT_DIR:-./extensions/habitllm/persistent}:/persistent
+    networks:
+      - shared_network

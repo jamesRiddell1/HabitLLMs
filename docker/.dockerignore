@@ -1,0 +1,10 @@
+.env
+Dockerfile
+docker-compose.yml
+/characters
+/loras
+/models
+/presets
+/prompts
+/training
+/.cache

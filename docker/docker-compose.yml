@@ -1,0 +1,45 @@
+# note this compose file should be sim-linked into ./text-generation-webui and run from within that directory
+# Run following commands from HabitLLM root to accomplish this:
+#   - cd text-generation-webui
+#   - ln -s ../docker/{docker-compose.yml,webui-compose.override.yml,.dockerignore} .
+# See README.md for more details
+name: habitllm
+
+include:
+  - path:
+    - webui-compose.yml # declare text-generation-webui service
+    - webui-compose.override.yml # override above service to allow users to specify path to text-generation-webui submodule
+services:
+  persistent-context-store:
+    image: qdrant/qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+          - ${PERSISTENT_DIR:-./extensions/habitllm/persistent}/model_context:/qdrant/storage
+    networks:
+      - shared_network
+      
+  interaction-memory-db:
+    image: alpine:latest
+    volumes:
+      - ${PERSISTENT_DIR:-./extensions/habitllm/persistent}/interaction_memory:/data
+    command: sh -c "apk --no-cache add sqlite && cp /data/initial-db.sqlite /data/db.sqlite && sqlite3 /data/db.sqlite < /data/init.sql && tail -f /dev/null"
+
+  interaction-memory-modifier:
+    image: linuxserver/sqlitebrowser
+    ports:
+      - "3000:3000"
+    depends_on:
+      - interaction-memory-db
+    environment:
+      - PUID=${APP_RUNTIME_UID}
+      - PGID=${APP_RUNTIME_UID}
+      - TZ=UTC
+      - ENABLE_UWSGI=true
+    volumes:
+      - ${PERSISTENT_DIR:-./extensions/habitllm/persistent}/interaction_memory/db:/data/db
+    networks:
+      - shared_network
+networks:
+  shared_network:
+    attachable: true

@@ -1,0 +1,20 @@
+{
+    "routines": {
+        "default": "uptime",
+        "categories": ["uptime", "downtime"]
+    },
+    "inference specific context": {
+        "default": true,
+        "categories": [true, false]
+    },
+    "model persistent context": {
+        "default": true,
+        "categories": [true, false]
+    },
+    "inference specific context chunks": {
+        "default": 4
+    },
+    "model persistent context chunks": {
+        "default": 4
+    }
+}

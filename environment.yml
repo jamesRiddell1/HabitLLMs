@@ -1,0 +1,6 @@
+name: dev
+dependencies:
+  - python=3.11
+  - ipykernel # required for jupyter notebook in vscode
+  - pip:
+    - -r requirements_dev.txt

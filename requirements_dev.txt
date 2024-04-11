@@ -1,0 +1,28 @@
+# developer aid
+ruff
+black
+mypy
+
+# project dev requirements
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.2.1
+torchvision==0.17.1
+torchaudio==2.2.1
+
+# oobabooga dev requirements
+tensorboard
+transformers==4.39.*
+gradio==4.25.*
+jinja2==3.1.2
+accelerate==0.27.*
+bitsandbytes==0.43.*
+datasets
+peft==0.8.*
+tensorboard
+tqdm
+
+# extension requirements
+sentence-transformers
+langchain
+qdrant-client
+faiss-cpu
