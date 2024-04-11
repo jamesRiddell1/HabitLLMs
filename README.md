@@ -3,7 +3,7 @@
 Repo for CS886 - Foundation Models course project. Continuous learning with memory of interactions and meta-optimized learning.
 HabitLLMs is a continous learning frameworks to adapt language models based on evolving user needs expressed through chat sessions.
 
-This instantiation of the system forms an extension for (oobabooga/text-generation-webui)[https://github.com/oobabooga/text-generation-webui.git]. Our system is designed to be modular to encourage hot swapping component implementations and developers to adapt the extension to their needs.
+This instantiation of the system forms an extension for [oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui.git). Our system is designed to be modular to encourage hot swapping component implementations and developers to adapt the extension to their needs.
 
 ## Project Organization
 
